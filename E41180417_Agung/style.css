@@ -29,3 +29,8 @@
 .table tr:nth-child(even){
     background-color: #e9e9e9;
 }
+
+.a{
+    font-family: sans-serif;
+    color: rgb(202, 17, 17);
+}
