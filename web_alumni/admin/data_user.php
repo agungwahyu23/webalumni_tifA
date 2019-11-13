@@ -128,8 +128,6 @@ include "../config/koneksi.php";
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>ID USER</th>
-                    <th>ID GRUP</th>
                     <th>USERNAME</th>
                     <th>PASSWORD</th>
                     <th>FULL NAME</th>
@@ -144,11 +142,9 @@ include "../config/koneksi.php";
 			?>
 			<tr>
 				        <td><?php echo $no++; ?></td>
-				        <td><?php echo $d['ID_USER']; ?></td>
-                <td><?php echo $d['ID_GRUP']; ?></td>
                 <td><?php echo $d['USERNAME']; ?></td>
 				        <td><?php echo $d['PASSWORD']; ?></td>
-                <td><?php echo $d['name']; ?></td>
+                <td><?php echo $d['NAMA_LENGKAP']; ?></td>
 				<td>
 					<a class="btn btn-success" href="edit.php?id=<?php echo $d['id']; ?>">EDIT</a>
 					<a class="btn btn-danger" href="hapus.php?id=<?php echo $d['id']; ?>">HAPUS</a>
