@@ -17,7 +17,7 @@
 	$data = mysqli_query($koneksi,"select * from user where ID_USER='$ID_USER'");
 	while($d = mysqli_fetch_array($data)){
 		?>
-		<form method="post" action="update.php">
+		<form method="post" action="ProsesEditUser.php">
 			<table>
 				<tr>			
 					<td>ID_USER</td>

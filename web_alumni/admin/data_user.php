@@ -144,10 +144,10 @@ include "../config/koneksi.php";
 				        <td><?php echo $no++; ?></td>
                 <td><?php echo $d['USERNAME']; ?></td>
 				        <td><?php echo $d['PASSWORD']; ?></td>
-                <td><?php echo $d['NAMA_LENGKAP']; ?></td>
+                <td><?php echo $d['name']; ?></td>
 				<td>
-					<a class="btn btn-success" href="edit.php?id=<?php echo $d['id']; ?>">EDIT</a>
-					<a class="btn btn-danger" href="hapus.php?id=<?php echo $d['id']; ?>">HAPUS</a>
+					<a class="btn btn-success" href="edit.php?ID_USER=<?php echo $d['ID_USER']; ?>">EDIT</a>
+					<a class="btn btn-danger" href="hapus.php?ID_USER=<?php echo $d['ID_USER']; ?>">HAPUS</a>
 				</td>
 			</tr>
 			<?php 
