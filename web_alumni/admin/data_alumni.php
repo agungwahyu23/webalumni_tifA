@@ -79,28 +79,28 @@ include "../config/koneksi.php";
           <i class="fas fa-fw fa-users"></i>
           <span>Alumni</span></a>
       </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-users"></i>
-          <span>Pengguna</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="data_user.php">Data Pengguna</a>
-          <a class="dropdown-item" href="data_grup.php">Data Grup Pengguna</a>
-          <div class="dropdown-divider"></div>
-        </div>
+      <li class="nav-item">
+        <a class="nav-link" href="data_user.php">
+          <i class="fas fa-fw fa-user"></i>
+          <span>Pengguna</span></a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-fw fa-folder"></i>
-          <span>Forum Diskusi</span>
+          <span>Master</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="kategori_diskus.php">Kategori</a>
-          <a class="dropdown-item" href="data_alumni.php">Pengguna</a>
-          <a class="dropdown-item" href="#">Topik</a>
+          <a class="dropdown-item" href="data_grup.php">Data Grup Pengguna</a>
+          <a class="dropdown-item" href="data_kategori_berita.php">Data Kategori Berita</a>
+          <a class="dropdown-item" href="data_ketegori_diskus.php">Data Kategori Diskusi</a>
+          <a class="dropdown-item" href="data_status.php">Data Status Alumni</a>
           <div class="dropdown-divider"></div>
         </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="fordis.php">
+          <i class="fas fa-fw fa-users"></i>
+          <span>Forum Diskusi</span></a>
       </li>
       
     </ul>
@@ -129,23 +129,33 @@ include "../config/koneksi.php";
                 <thead>
                   <tr>
                     <th>No</th>
-                    <th>USERNAME</th>
-                    <th>PASSWORD</th>
-                    <th>FULL NAME</th>
+                    <th>NISN</th>
+                    <th>NAMA</th>
+                    <th>JK</th>
+                    <th>TANGGAL LAHIR</th>
+                    <th>ALAMAT</th>
+                    <th>TAHUN MASUK</th>
+                    <th>TAHUN LULUS</th>
+                    <th>NO IJAZAH</th>
                     <th>AKSI</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php 
 		$no = 1;
-		$data = mysqli_query($koneksi,"select * from user");
+		$data = mysqli_query($koneksi,"select * from profil");
 		while($d = mysqli_fetch_array($data)){
 			?>
 			<tr>
 				        <td><?php echo $no++; ?></td>
-                <td><?php echo $d['USERNAME']; ?></td>
-				        <td><?php echo $d['PASSWORD']; ?></td>
-                <td><?php echo $d['name']; ?></td>
+                <td><?php echo $d['NISN']; ?></td>
+				        <td><?php echo $d['NM_LENGKAP']; ?></td>
+                <td><?php echo $d['JENKEL']; ?></td>
+                <td><?php echo $d['TGL_LAHIR']; ?></td>
+                <td><?php echo $d['ALAMAT']; ?></td>
+                <td><?php echo $d['THN_MASUK']; ?></td>
+                <td><?php echo $d['THN_LULUS']; ?></td>
+                <td><?php echo $d['NO_IJAZAH']; ?></td>
 				<td>
 					<a class="btn btn-success" href="edit.php?ID_USER=<?php echo $d['ID_USER']; ?>">EDIT</a>
 					<a class="btn btn-danger" href="hapus.php?ID_USER=<?php echo $d['ID_USER']; ?>">HAPUS</a>
