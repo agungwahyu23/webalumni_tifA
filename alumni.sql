@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 07 Nov 2019 pada 02.38
+-- Generation Time: 26 Nov 2019 pada 07.26
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `coba1`
+-- Database: `alumni_test`
 --
 
 -- --------------------------------------------------------
@@ -54,7 +54,8 @@ CREATE TABLE `grup` (
 
 INSERT INTO `grup` (`ID_GRUP`, `NAMA`, `DESKRIPSI`) VALUES
 (1, 'Admin', 'admin'),
-(2, 'Alumni', 'alumni');
+(2, 'Alumni', 'alumni'),
+(5, 'Guru', 'Guru');
 
 -- --------------------------------------------------------
 
@@ -67,6 +68,15 @@ CREATE TABLE `kategori_berita` (
   `NM_KATEGORI` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `kategori_berita`
+--
+
+INSERT INTO `kategori_berita` (`ID_KATEGORIBERITA`, `NM_KATEGORI`) VALUES
+(1, 'Pendidikan'),
+(2, 'Lomba'),
+(3, 'Olahraga');
+
 -- --------------------------------------------------------
 
 --
@@ -77,6 +87,18 @@ CREATE TABLE `kategori_diskusi` (
   `ID_KATEGORIDISK` int(11) NOT NULL,
   `KATEGORI` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `kategori_diskusi`
+--
+
+INSERT INTO `kategori_diskusi` (`ID_KATEGORIDISK`, `KATEGORI`) VALUES
+(1, 'Kuliah'),
+(2, 'Pekerjaan'),
+(3, 'Alumni'),
+(4, 'Religi'),
+(5, 'Prestasi'),
+(6, 'Lomba');
 
 -- --------------------------------------------------------
 
@@ -91,6 +113,17 @@ CREATE TABLE `komentar_diskusi` (
   `KOMENTAR` varchar(100) DEFAULT NULL,
   `TGL_KOMENTAR` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `komentar_diskusi`
+--
+
+INSERT INTO `komentar_diskusi` (`ID_KOMENTAR`, `ID_USER`, `ID_DISKUSI`, `KOMENTAR`, `TGL_KOMENTAR`) VALUES
+(1, 3, 1, 'INI KOMENTAR 1', '2019-11-03'),
+(2, 7, 1, 'INI KOMENTAR 2', '2019-11-03'),
+(3, 10, 2, 'INI KOMENTAR PERTAMA', '2019-11-04'),
+(4, 8, 2, 'INI KOMENTAR KEDUA', '2019-11-04'),
+(5, 13, 1, 'INI KOMENYTAR 3', '2019-11-03');
 
 -- --------------------------------------------------------
 
@@ -107,6 +140,14 @@ CREATE TABLE `post_diskusi` (
   `TANGGAL_POST` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data untuk tabel `post_diskusi`
+--
+
+INSERT INTO `post_diskusi` (`ID_DISKUSI`, `ID_KATEGORIDISK`, `ID_USER`, `TITLE`, `CONTENT`, `TANGGAL_POST`) VALUES
+(1, 1, 2, 'COBA', 'INI PERCOBAAN', '2019-11-03'),
+(2, 2, 4, 'BERITA BARU', 'INI BERITA BARU', '2019-11-04');
+
 -- --------------------------------------------------------
 
 --
@@ -116,6 +157,7 @@ CREATE TABLE `post_diskusi` (
 CREATE TABLE `profil` (
   `NISN` int(11) NOT NULL,
   `ID_USER` int(11) NOT NULL,
+  `id_status` int(11) NOT NULL,
   `NM_LENGKAP` varchar(100) DEFAULT NULL,
   `JENKEL` varchar(25) DEFAULT NULL,
   `TEMPAT_LAHIR` varchar(75) DEFAULT NULL,
@@ -129,17 +171,53 @@ CREATE TABLE `profil` (
   `THN_MASUK` varchar(15) DEFAULT NULL,
   `THN_LULUS` varchar(15) DEFAULT NULL,
   `NO_IJAZAH` varchar(25) DEFAULT NULL,
-  `NO_SKHUN` varchar(25) DEFAULT NULL,
-  `STATUS` varchar(50) DEFAULT NULL
+  `NO_SKHUN` varchar(25) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `profil`
 --
 
-INSERT INTO `profil` (`NISN`, `ID_USER`, `NM_LENGKAP`, `JENKEL`, `TEMPAT_LAHIR`, `TGL_LAHIR`, `ALAMAT`, `NO_TELP`, `NM_AYAH`, `PEKERJAAN_AYAH`, `NM_IBU`, `PEKERJAAN_IBU`, `THN_MASUK`, `THN_LULUS`, `NO_IJAZAH`, `NO_SKHUN`, `STATUS`) VALUES
-(1, 2, 'DENI SATRIYO', 'PRIA', 'JEMBER', '2019-11-01', 'JEMBER', '093712', 'DONO', 'PNS', 'DINI', 'PNS', '2015', '2018', '2211', '22112', 'KERJA'),
-(2, 3, 'GULAM AHMAD', 'PRIA', 'JEMBER', '2019-11-03', 'JEMBER', '0988999', 'DONO', 'PNS', 'DINI', 'PNS', '2015', '2019', '22112', '2211', 'KULIAH');
+INSERT INTO `profil` (`NISN`, `ID_USER`, `id_status`, `NM_LENGKAP`, `JENKEL`, `TEMPAT_LAHIR`, `TGL_LAHIR`, `ALAMAT`, `NO_TELP`, `NM_AYAH`, `PEKERJAAN_AYAH`, `NM_IBU`, `PEKERJAAN_IBU`, `THN_MASUK`, `THN_LULUS`, `NO_IJAZAH`, `NO_SKHUN`) VALUES
+(2013001, 2, 1, 'Tania Nuari Cicia', 'Perempuan', 'Jember', '1999-11-03', 'Sumbersari', '089213888999', 'Parman', 'wiraswasta', 'sisil', 'Guru', '2013', '2016', '102001', '202001'),
+(2013002, 3, 1, 'Yudha Widya Pratama', 'Pria', 'JEMEBR', '2000-11-10', 'SITUBONDO', '081223892123', 'BUDI', 'PNS', 'SEKAR', '-', '2013', '2016', '102002', '202002'),
+(2013003, 4, 1, 'Aldi Syafi Bachtiar', 'PRIA', 'LUMAJANG', '2000-09-03', 'BATU RADEN', '0813452318', 'PONIMAN', 'BURUH', 'INDRIANI', 'WIRASWASTA', '2013', '2016', '102003', '202003'),
+(2013004, 5, 1, 'Alfiandra Gabriel Alfaro', 'PRIA', 'JEMBER', '1999-01-23', 'MASTRIP TIMUR', '0899812223', 'PARMAN', 'PNS', 'SURTI', '-', '2013', '2016', '102004', '202004'),
+(2013005, 6, 1, 'Aurelia Permata Ayu Herlina', 'PEREMPUAN', 'JEMBER', '1997-01-01', 'PAGAH', '081234555666', 'BUDI ARYA', 'PNS', 'SUTEMI', '-', '2013', '2016', '102005', '202005'),
+(2014001, 7, 2, 'Dwi Nurma Safira', 'PEREMPUAN', 'JEMBER', '1998-01-03', 'JEMBER', '081234222111', 'ARYA', 'PEGAWAI', 'INDAH', 'PNS', '2014', '2017', '103001', '203001'),
+(2014002, 8, 2, 'Eknasya Cikal Syifa', 'PEREMPUAN', 'JEMBER', '1998-02-04', 'JEMBER', '081234898777', 'NANDO', 'WIRAUSAHA', 'AJENG', 'WIRAUSAHA', '2014', '2017', '103002', '203002'),
+(2014003, 9, 2, 'Febriyan Adam', 'PRIA', 'JEMBER', '1998-09-08', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL),
+(2014004, 10, 1, 'Flora Nafisa', 'PEREMPUAN', 'JEMBER', '1998-01-01', 'JEMBER', '08189881221', 'HERIANSYAH', 'PNS', 'ARIANI', '-', '2014', '2017', '1030012', '1290001'),
+(2014005, 11, 1, 'Laili Nur Hidayati', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2014', '2017', '09888819', '1212133'),
+(2015001, 12, 1, 'M. Aqso Al Hafis', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015', '2018', NULL, NULL),
+(2015002, 13, 2, 'M. Rizqi Ardan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015', '2018', NULL, NULL),
+(2015003, 14, 1, 'Mohammad Dwi Miftahul Huda', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015', '2018', NULL, NULL),
+(2015004, 15, 1, 'Muhammad Aqhil Firmansyah', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015', '2018', NULL, NULL),
+(2015005, 16, 1, 'Muhammad Kevin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2015', '2018', NULL, NULL),
+(2016001, 17, 1, 'Muhammad Raehan', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016', '2019', NULL, NULL),
+(2016002, 18, 1, 'Syauqhi Mushabikin', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016', '2019', NULL, NULL),
+(2016003, 19, 2, 'Nadiya Oktaviany', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016', '2019', NULL, NULL),
+(2016004, 20, 1, 'Nur Alifiyah Aprilia', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016', '2019', NULL, NULL),
+(2016005, 21, 1, 'Rebecca Zahir Albara', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2016', '2019', NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `status_alumni`
+--
+
+CREATE TABLE `status_alumni` (
+  `id_status` int(11) NOT NULL,
+  `nama_status` varchar(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `status_alumni`
+--
+
+INSERT INTO `status_alumni` (`id_status`, `nama_status`) VALUES
+(1, 'Kuliah'),
+(2, 'Kerja');
 
 -- --------------------------------------------------------
 
@@ -153,18 +231,54 @@ CREATE TABLE `user` (
   `USERNAME` varchar(50) DEFAULT NULL,
   `PASSWORD` varchar(50) DEFAULT NULL,
   `EMAIL` varchar(50) DEFAULT NULL,
-  `FIRST_NAME` varchar(50) DEFAULT NULL,
-  `LAST_NAME` varchar(50) DEFAULT NULL
+  `NM_LENGKAP` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `user`
 --
 
-INSERT INTO `user` (`ID_USER`, `ID_GRUP`, `USERNAME`, `PASSWORD`, `EMAIL`, `FIRST_NAME`, `LAST_NAME`) VALUES
-(2, 2, 'DENI', 'DENI123', 'DENI@DENI.COM', 'DENI', 'INED'),
-(3, 2, 'GULAM', 'GULAM123', 'GULAM@GULAM.COM', 'GULAM', 'GULAMO'),
-(4, 1, 'ADMIN', 'ADMIN', 'agulam@yahoo.com', 'ADMIN', 'ADMIN');
+INSERT INTO `user` (`ID_USER`, `ID_GRUP`, `USERNAME`, `PASSWORD`, `EMAIL`, `NM_LENGKAP`) VALUES
+(2, 2, '2013001', '2013001', 'tania@gmail.com', 'Tania Nuari Cicia'),
+(3, 2, '2013002', '2013002', 'yud@gmail.com', 'Yudha Widya Pratama'),
+(4, 2, '2013003', '2013003', 'aldi23@gmail.com', 'Aldi Syafi Bachtiar'),
+(5, 2, '2013004', '2013004', 'Alfiindr@gmail.com', 'Alfiandra Gabriel Alfaro'),
+(6, 2, '2013005', '2013005', 'liaaa12@gmail.com', 'Aurelia Permata Ayu Herlina'),
+(7, 2, '2014001', '2014001', 'nurm@gmail.com', 'Dwi Nurma Safira'),
+(8, 2, '2014002', '2014002', 'cikl999@gmail.com', 'Eknasya Cikal Syifa'),
+(9, 2, '2014003', '2014003', 'adaam@gmail.com', 'Febriyan Adam'),
+(10, 2, '2014004', '2014004', 'Nafffis@gmail.com', 'Flora Nafisa'),
+(11, 2, '2014005', '2014005', 'laililili@gmail.com', 'Laili Nur Hidayati'),
+(12, 2, '2015001', '2015001', 'hafizqw11@gmail.com', 'M. Aqso Al Hafis'),
+(13, 2, '2015002', '2015002', 'ardanwq@gmail.com', 'M. Rizqi Ardan'),
+(14, 2, '2015003', '2015003', 'huda99@gmail.com', 'Mohammad Dwi Miftahul Huda'),
+(15, 2, '2015004', '2015004', 'aqhiil@gmail.com', 'Muhammad Aqhil Firmansyah'),
+(16, 2, '2015005', '2015005', 'kevvinn@gmail.com', 'Muhammad Kevin'),
+(17, 2, '2016001', '2016001', 'raehanal@gmail.com', 'Muhammad Raehan'),
+(18, 2, '2016002', '2016002', 'syauqymsb@gmail.com', 'Syauqhi Mushabikin'),
+(19, 2, '2016003', '2016003', 'ndya@gmail.com', 'Nadiya Oktaviany'),
+(20, 2, '2016004', '2016004', 'aprillll@gmail.com', 'Nur Alifiyah Aprilia'),
+(21, 2, '2016005', '2016005', 'albaraazh@gmail.com', 'Rebecca Zahir Albara');
+
+--
+-- Trigger `user`
+--
+DELIMITER $$
+CREATE TRIGGER `data_user` AFTER INSERT ON `user` FOR EACH ROW INSERT INTO
+profil
+SET
+ID_USER = NEW.ID_USER,
+NISN = NEW.USERNAME,
+NM_LENGKAP = NEW.NM_LENGKAP
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `hps_user` AFTER DELETE ON `user` FOR EACH ROW DELETE FROM
+profil
+WHERE
+ID_USER = old.ID_USER
+$$
+DELIMITER ;
 
 --
 -- Indexes for dumped tables
@@ -219,6 +333,12 @@ ALTER TABLE `profil`
   ADD PRIMARY KEY (`NISN`);
 
 --
+-- Indexes for table `status_alumni`
+--
+ALTER TABLE `status_alumni`
+  ADD PRIMARY KEY (`id_status`);
+
+--
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -238,32 +358,37 @@ ALTER TABLE `berita`
 -- AUTO_INCREMENT for table `grup`
 --
 ALTER TABLE `grup`
-  MODIFY `ID_GRUP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `ID_GRUP` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `kategori_berita`
 --
 ALTER TABLE `kategori_berita`
-  MODIFY `ID_KATEGORIBERITA` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_KATEGORIBERITA` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `kategori_diskusi`
 --
 ALTER TABLE `kategori_diskusi`
-  MODIFY `ID_KATEGORIDISK` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_KATEGORIDISK` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `komentar_diskusi`
 --
 ALTER TABLE `komentar_diskusi`
-  MODIFY `ID_KOMENTAR` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_KOMENTAR` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `post_diskusi`
 --
 ALTER TABLE `post_diskusi`
-  MODIFY `ID_DISKUSI` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_DISKUSI` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `status_alumni`
+--
+ALTER TABLE `status_alumni`
+  MODIFY `id_status` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID_USER` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
 --
