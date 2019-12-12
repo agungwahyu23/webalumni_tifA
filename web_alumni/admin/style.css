@@ -1,0 +1,198 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+#wrapper{
+    width: 100%;
+    position: relative;
+}
+
+#kepala{
+    background: blue;
+    border-bottom: 6px solid rgb(0, 0, 43);
+    height: 90px;
+    width: 100%;
+    z-index: 1000;
+    position: fixed;
+}
+
+#kepala ul{
+    float: right;
+    list-style: none;
+    padding: 50px 20px;
+    color: white;
+}
+
+#kepala li{
+    display: inline;
+    padding: 0px 10px 0px 10px;
+    font-size: 20px;
+}
+
+#kepala_login{
+    background: blue;
+    border-bottom: 6px solid rgb(0, 0, 43);
+    height: 90px;
+    width: 100%;
+    z-index: 1000;
+}
+
+#kepala_login ul{
+    float: right;
+    list-style: none;
+    padding: 50px 20px;
+    color: white;
+}
+
+#kepala_login li{
+    display: inline;
+    padding: 0px 10px 0px 10px;
+    font-size: 20px;
+}
+
+#banner{
+    width: 100%;
+    color: dimgrey;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+#menu{
+    text-decoration: none;
+    color: white;
+    font-family: Calibri;
+}
+
+#menu ul li{
+    list-style: none;
+}
+
+#menu ul li a{
+    text-decoration: none;
+    color: white;
+    transition:all .5s ease;
+}
+
+#menu ul li a:hover{
+	padding:10px 20px;
+	text-decoration: overline;
+}
+
+.tulisan_login{
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.box_login{
+    width: 350px;
+    background: white;
+    margin: 50px auto;
+    padding: 30px 20px;
+}
+
+.form_login{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    font-size: 11pt;
+    margin-bottom: 20px;
+}
+
+.tombol_login{
+    background: #46de4b;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+}
+
+.link{
+    color: #232323;
+    text-decoration: none;
+    font-size: 10pt;
+}
+    
+.batas{
+    background-image: url('img/moto.png');
+    height: 100px;
+    margin-top: 10px;
+}
+
+.batas h1{
+    padding-top: 50px;
+    color: rgb(138, 138, 138);
+}
+
+.navbar-brand {
+  float: left;
+  height: 10px;
+  padding: 0px 10px;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.navbar-txt{
+    padding-top: 20px;
+}
+
+.content{
+    color: rgb(83, 83, 83);
+    position:relative;
+/*	min-height:1500px; /*kalau website sudah selesai, baris ini diganti dgn padding-top: (sama dgn tinggi header)*/
+	padding-top:95px;
+}
+
+.content li{
+    display: inline;
+    padding: 0px 10px 0px 10px;
+}
+
+.gambar{
+    float: left;
+    margin: 50px 85px 50px 135px;
+
+}
+
+#footer{
+    background-color: rgb(3, 0, 27);
+    height: auto;
+    bottom: 0px;
+    float: right;
+    padding: 0% 80% 0% 0%;
+}
+
+#footer li{
+    list-style: none;
+    padding-top: 10px;
+    padding-left: 20px;
+    color: white;
+}
+
+.paralax-title {
+    position: absolute;
+    font-size: 40px;
+    font-weight: 300;
+    line-height: 160px;
+    color: rgb(184, 0, 0);
+    text-shadow: 1px 1px #888;
+  }
+  
+  .img-paralax {
+    height: 250px;
+    overflow: hidden;
+  }
+
+  .container {
+    width: 100%;
+}
+
+.img-content {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}

@@ -1,0 +1,52 @@
+*{
+    padding: 0;
+    margin: 0;
+ }
+ /*ini bagian kepala*/
+ #kepala {
+     padding: 35px;
+     color: white;
+     background-color: brown;
+ }
+ nav h1{
+     display: inline;
+ }
+ nav ul{
+     float: right;
+     list-style: none;
+ }
+ 
+ ul li{
+     display: inline;
+ }
+ nav ul li{
+     display: inline-block;
+     margin-right: 50px;
+ }
+ a{
+     text-decoration: none;
+     color: white;
+ }
+ #judul {
+     padding: 10px;
+ }
+ h1 {
+     text-align: center;
+ }
+ section ul{
+     display: inline;
+     margin: 150px;
+ }
+ #gambar{
+     float: left;
+     margin: 50px 85px 50px 150px;
+ }
+ footer{
+     position: absolute;
+     bottom: 0px;
+     float: left;
+     padding: 0% 0% 0% 45%;
+ }
+ .p{
+     text-align: center;
+ }

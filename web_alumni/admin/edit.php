@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>CRUD PHP dan MySQLi - WWW.MALASNGODING.COM</title>
+	<title>EDIT ADMIN</title>
 </head>
 <body>
  
-	<h2>CRUD DATA MAHASISWA - WWW.MALASNGODING.COM</h2>
+	<h2>CRUD ADMIN</h2>
 	<br/>
 	<a href="index.php">KEMBALI</a>
 	<br/>
 	<br/>
-	<h3>EDIT DATA MAHASISWA</h3>
+	<h3>EDIT </h3>
     <?php
 	include '../config/koneksi.php';
 	$ID_USER = $_GET['ID_USER'];
@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                 <td>name</td>
-					<td><input type="text" name="name" value="<?php echo $d['name']; ?>"></td>
+					<td><input type="text" name="name" value="<?php echo $d['NAMA_LENGKAP']; ?>"></td>
                 </tr>
 			</table>
 		</form>

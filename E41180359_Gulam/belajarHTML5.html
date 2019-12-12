@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang= "en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Belajar HTML5</title>
+        <style>
+            h2,h1 {
+                color: red;
+                background-color: grey;
+            }
+           input[type=text]{
+               background-color: red;
+               color: white;
+               border: 2px solid green; 
+               padding: 10px;
+           }
+           #kepala{
+               background: pink;
+               color: grey;
+               height: 100;
+               padding: 50px;
+           }
+           .subbab{
+               background: firebrick;
+           }
+           .sub{
+               color: aliceblue;
+           }
+
+           a:active{
+               color : brown;
+           }
+           a:link{
+               color : grey;
+           }
+           a:hover{
+               color :orange;
+           }
+           a:visited{
+               color: hotpink;
+           }
+            *{
+                margin: 0;
+                padding: 0;
+            }
+        </style>
+    </head>
+    <body>
+
+        <!--ini adalah elemen header-->
+        <header id="kepala">
+            <h1 >Pedoman Belajar Programming</h1>
+        </header>
+
+        <!--ini adalah elemen navigasi-->
+        <nav>
+            <ul>
+                <li><a href="css1.html" >java</a></li>
+                <li><a href="css2.html">PHP</a></li>
+                <li><a href="css3.html">HTML</a></li>
+            </ul>
+        </nav>
+        <!--ini adalah section-->
+        <section>
+        <!--ini adalah elemen article-->
+            <article>
+                <h2 class="subbab sub">article 1</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima tenetur nihil similique quisquam sapiente ratione dolor. Iusto impedit minima hic, expedita molestias quod tempore neque quia accusamus cumque adipisci a.</p>
+            </article>
+
+        <article>
+                <h2>artikel 2</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima ut in quis aliquid, fugiat blanditiis, ipsam quia sunt maiores beatae rerum incidunt assumenda enim expedita? Officia porro suscipit ullam unde?</p>
+        </article>
+
+        <form action=""methode="">
+            <input type="text" name="id" placeholder="input your ID">
+            <input type="text" name="nama" placeholder="input your name">
+            <input type="submit" value="save">
+        </form>
+    </section>
+        
+      <!--ini adalah elemen aside-->
+      <aside>
+          <p>ini adalah link untuk belajar HTML</p>
+          <ul>
+              <li><a href="http://www.samehadaku.tv" target="_blank">link 1</a></li>
+              <li><a href="https://www.malasngoding.com/belajar-php-tipe-data-pada-php/
+                " target="_blank">link 2</a></li>
+              <li><a href="#">link 3</a></li>
+          </ul>
+      </aside> 
+
+      <footer>
+          <p>footer - copyright Jti.polije 2019</p>
+      </footer>
+    </body>
+</html>
