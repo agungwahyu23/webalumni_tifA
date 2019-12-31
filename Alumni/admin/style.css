@@ -1,0 +1,123 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    font-family: 'Arial Narrow';
+    background:  #d5f0f3;
+}
+
+#kepala{
+    background: blue;
+    border-bottom: 6px solid rgb(0, 0, 43);
+    height: 90px;
+    width: 100%;
+    z-index: 1000;
+
+}
+
+#kepala ul{
+    float: right;
+    list-style: none;
+    padding: 50px 20px;
+    color: white;
+}
+
+#kepala li{
+    display: inline;
+    padding: 0px 10px 0px 10px;
+    font-size: 20px;
+}
+
+.navbar-brand {
+    float: left;
+    height: 10px;
+    padding: 0px 10px;
+    font-size: 18px;
+    line-height: 20px;
+}
+  
+  .navbar-txt{
+      padding-top: 20px;
+      text-decoration: none;
+      color: white;
+}
+
+#menu{
+    text-decoration: none;
+    color: white;
+    font-family: Calibri;
+}
+
+#menu ul li{
+    list-style: none;
+}
+
+#menu ul li a{
+    text-decoration: none;
+    color: white;
+    transition:all .5s ease;
+}
+
+#menu ul li a:hover{
+	padding:10px 20px;
+	text-decoration: overline;
+}
+
+h1{
+    text-align: center;
+    font-weight: 300;
+}
+
+
+.tulisan_login{
+    text-align: center;
+    text-transform: uppercase;
+    padding-bottom: 5px;
+}
+
+.box_login{
+    width: 350px;
+    background: white;
+    margin: 80px auto;
+    padding: 30px 20px;
+}
+
+.form_login{
+    box-sizing: border-box;
+    width: 100%;
+    padding: 10px;
+    font-size: 11pt;
+    margin-bottom: 20px;
+}
+
+.tombol_login{
+    background: #46de4b;
+    color: white;
+    width: 100%;
+    border: none;
+    border-radius: 3px;
+    padding: 10px 20px;
+}
+
+.link{
+    color: #232323;
+    text-decoration: none;
+    font-size: 10pt;
+}
+
+#footer{
+    background-color: rgb(3, 0, 27);
+    height: auto;
+    bottom: 0px;
+    float: right;
+    padding: 0% 80% 0% 0%;
+}
+
+#footer li{
+    list-style: none;
+    padding-top: 10px;
+    padding-left: 20px;
+    color: white;
+}
