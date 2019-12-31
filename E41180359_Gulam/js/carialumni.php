@@ -24,7 +24,7 @@
             <th>Tahun Masuk</th>
             <th>Tahun Lulus</th>
             <th>Status</th>
-
+			<th>Aksi</th>
 		</tr>
 		<?php 
 		include 'koneksi.php';
@@ -45,8 +45,8 @@
                 <td><?php echo $d['THN_LULUS']; ?></td>
                 <td><?php echo $d['NAMA_STATUS']; ?></td>
 				<td>
-					<a href="ubah.php?id=<?php echo $d['id']; ?>">UBAH</a>
-					<a href="detail.php?id=<?php echo $d['id']; ?>">DETAIL</a>
+				<a class="btn btn-success" href="ubah.php?id=<?php echo $d['id']; ?>">UBAH</a>
+				<a class="btn btn-danger" href="detail.php?id=<?php echo $d['id']; ?>">DETAIL</a>
 				</td>
 			</tr>
 			<?php 

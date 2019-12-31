@@ -1,0 +1,27 @@
+<html>
+<head>
+      <meta charset="UTF-8">
+      <title>Latihan Java</title>
+</head>
+<body>
+      <form action="#" method='post' >
+            <p>Masukkan NIM</p>
+            <input id="nim" type="text" name="nim">
+            <p> Masukkan Nama Mahasiswa</p>
+            <input id="nama" type='text' name='nama'><br>
+            <button type='button' onClick='tampilBiodata()'> tampil</button> 
+      </form>
+
+<p id="hasil"></p>
+
+<script>
+      function tampilBiodata(){
+            var nim = document.getElementById('nim').value;
+            var nama = document.getElementById('nama').value;
+            var tampil = "Hallo,"+nim+" "+nama;
+
+            document.getElementById("hasil").innerHTML = tampil;
+      }
+</script>
+</body>
+</html>
