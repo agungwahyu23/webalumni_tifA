@@ -1,0 +1,11 @@
+2013
+2014
+2015
+2016
+
+SELECT post_diskusi.ID_DISKUSI, komentar_diskusi.ID_DISKUSI AS pemosting, komentar_diskusi.ID_USER as komentator
+FROM post_diskusi
+JOIN komentar_diskusi ON post_diskusi.ID_DISKUSI = komentar_diskusi.ID_DISKUSI
+
+INSERT INTO `user` (`ID_USER`, `ID_GRUP`, `USERNAME`, `PASSWORD`, `EMAIL`, `NM_LENGKAP`) VALUES (NULL, '2', '2013001', '2013001', 'tania@gmail.com', 'Tania Nuari Cicia'), (NULL, '2', '2013002', '2013002', 'yud@gmail.com', 'Yudha Widya Pratama'), (NULL, '2', '2013003', '2013003', 'aldi23@gmail.com', 'Aldi Syafi Bachtiar'), (NULL, '2', '2013004', '2013004', 'Alfiindr@gmail.com', 'Alfiandra Gabriel Alfaro'), (NULL, '2', '2013005', '2013005', 'liaaa12@gmail.com', 'Aurelia Permata Ayu Herlina'), (NULL, '2', '2014001', '2014001', 'nurm@gmail.com', 'Dwi Nurma Safira'), (NULL, '2', '2014002', '2014002', 'cikl999@gmail.com', 'Eknasya Cikal Syifa'), (NULL, '2', '2014003', '2014003', 'adaam@gmail.com', 'Febriyan Adam'), (NULL, '2', '2014004', '2014004', 'Nafffis@gmail.com', 'Flora Nafisa'), (NULL, '2', '2014005', '2014005', 'laililili@gmail.com', 'Laili Nur Hidayati'), (NULL, '2', '2015001', '2015001', 'hafizqw11@gmail.com', 'M. Aqso Al Hafis'), (NULL, '2', '2015002', '2015002', 'ardanwq@gmail.com', 'M. Rizqi Ardan'), (NULL, '2', '2015003', '2015003', 'huda99@gmail.com', 'Mohammad Dwi Miftahul Huda'), (NULL, '2', '2015004', '2015004', 'aqhiil@gmail.com', 'Muhammad Aqhil Firmansyah'), (NULL, '2', '2015005', '2015005', 'kevvinn@gmail.com', 'Muhammad Kevin'), (NULL, '2', '2016001', '2016001', 'raehanal@gmail.com', 'Muhammad Raehan'), (NULL, '2', '2016002', '2016002', 'syauqymsb@gmail.com', 'Syauqhi Mushabikin'), (NULL, '2', '2016003', '2016003', 'ndya@gmail.com', 'Nadiya Oktaviany'), (NULL, '2', '2016004', '2016004', 'aprillll@gmail.com', 'Nur Alifiyah Aprilia'), (NULL, '2', '2016005', '2016005', 'albaraazh@gmail.com', 'Rebecca Zahir Albara');
+
