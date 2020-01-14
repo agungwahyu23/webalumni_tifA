@@ -7,11 +7,26 @@ if(isset($_POST['simpan'])){
 
     // menangkap data yang di kirim dari form
 
-$NAMA = $_POST['NAMA'];
-$DESKRIPSI = $_POST['DESKRIPSI'];
+    $NISN = $_POST['NISN'];
+    $id_status = $_POST['id_status'];
+    $NM_LENGKAP = $_POST['NM_LENGKAP'];
+    $JENKEL= $_POST['JENKEL'];
+    $TEMPAT_LAHIR= $_POST['TEMPAT_LAHIR'];
+    $TGL_LAHIR= $_POST['TGL_LAHIR'];
+    $ALAMAT= $_POST['ALAMAT'];
+    $NO_TELP= $_POST['NO_TELP'];
+    $NM_AYAH= $_POST['NM_AYAH'];
+    $PEKERJAAN_AYAH= $_POST['PEKERJAAN_AYAH'];
+    $NM_IBU= $_POST['NM_IBU'];
+    $PEKERJAAN_IBU= $_POST['PEKERJAAN_IBU'];
+    $THN_MASUK= $_POST['THN_MASUK'];
+    $THN_LULUS= $_POST['THN_LULUS'];
+    $NO_IJAZAH= $_POST['NO_IJAZAH'];
+    $NO_SKHUN= $_POST['NO_SKHUN'];
 
+   
 // menginput data ke database
-$query = mysqli_query($koneksi,"insert into grup values('','$NAMA','$DESKRIPSI')");
+$query = mysqli_query($koneksi,"insert into profil values('$NISN','','$id_status','$NM_LENGKAP','$JENKEL','$TEMPAT_LAHIR','$TGL_LAHIR','$ALAMAT','$NO_TELP','$NM_AYAH','$PEKERJAAN_AYAH','$NM_IBU','$PEKERJAAN_IBU','$THN_MASUK','$THN_LULUS','$NO_IJAZAH','$NO_SKHUN')");
 //alert jika berhasil
 if($query){
     echo "<script>alert('Data berhasil disimpan .');window.location=('media.php?halaman=data_alumni')</script>";
@@ -41,7 +56,7 @@ if($query){
     $NO_SKHUN= $_POST['NO_SKHUN'];
 
     // update data ke database
-    $query = mysqli_query($koneksi,"update profil set ID_USER='$ID_USER', id_status='$id_status', NM_LENGKAP='$NM_LENGKAP', JENKEL='$JENKEL', TEMPAT_LAHIR='$TEMPAT_LAHIR', TGL_LAHIR='$TGL_LAHIR', ALAMAT='$ALAMAT', NO_TELP='$NO_TELP', NM_AYAH='$NM_AYAH', PEKERJAAN_AYAH='$PEKERJAAN_AYAH', NM_IBU='$NM_IBU', PEKERJAAN_IBU='$PEKERJAAN_IBU', THN_MASUK='$THN_MASUK', THN_LULUS='$THN_LULUS', NO_IJAZAH='$NO_IJAZAH', NO_SKHUN='$NO_SKHUN' where NISN='$NISN'");
+    $query = mysqli_query($koneksi,"update profil set NISN='$NISN', id_status='$id_status', NM_LENGKAP='$NM_LENGKAP', JENKEL='$JENKEL', TEMPAT_LAHIR='$TEMPAT_LAHIR', TGL_LAHIR='$TGL_LAHIR', ALAMAT='$ALAMAT', NO_TELP='$NO_TELP', NM_AYAH='$NM_AYAH', PEKERJAAN_AYAH='$PEKERJAAN_AYAH', NM_IBU='$NM_IBU', PEKERJAAN_IBU='$PEKERJAAN_IBU', THN_MASUK='$THN_MASUK', THN_LULUS='$THN_LULUS', NO_IJAZAH='$NO_IJAZAH', NO_SKHUN='$NO_SKHUN' where ID_USER='$ID_USER'");
  
     // mengalihkan halaman kembali ke index.php
     if($query){
@@ -51,9 +66,9 @@ if($query){
     }
 
     //proses delete
-}elseif(isset($_GET['NISN'])){
-    $NISN = $_GET['NISN'];
-    $query = mysqli_query($koneksi, "delete from profil where NISN='$NISN'");
+}elseif(isset($_GET['ID_USER'])){
+    $ID_USER = $_GET['ID_USER'];
+    $query = mysqli_query($koneksi, "delete from profil where ID_USER='$ID_USER'");
 
     if($query){
         echo "<script>alert('Data berhasil dihapus .');window.location=('data_alumni.php')</script>";

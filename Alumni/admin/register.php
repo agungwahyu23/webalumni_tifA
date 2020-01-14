@@ -37,60 +37,138 @@ include "../config/koneksi.php";
         <!-- Breadcrumbs-->
 
         <!-- Form Register -->
-  <div class="container">
+        <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Register an Account</div>
+      <div class="card-header">Register An Account</div>
       <div class="card-body">
-
-        <form method="POST" action="ProsesEditUser.php">
-          <div class="form-group">
-            <div class="form-label-group">
-              
-              <select name="ID_GRUP" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-              <option value="">--Pilih Level--</option>
-              <?php
-              $data = mysqli_query($koneksi,"select * from grup");
-              while($d = mysqli_fetch_array($data)){ ?>
-              <option value="<?php echo $d['ID_GRUP'];?>"> <?php echo $d['NAMA'];?> </option>
-              <?php } ?>
-              </select>
-              
-              
-            </div>
-          </div>
-          <div class="form-group">
-            <div class="form-row">
-              <div class="col-md-6">
-                <div class="form-label-group">
-                  <input type="text" name="USERNAME" id="firstName" class="form-control" placeholder="First name" required="required" autofocus="autofocus">
-                  <label for="firstName">Username</label>
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-label-group">
-                  <input type="password" name="PASSWORD" id="lastName" class="form-control" placeholder="Last name" required="required">
-                  <label for="lastName">Password</label>
-                </div>
-              </div>
-            </div>
-          </div>
-          
-          <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" name="EMAIL" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                  <label for="inputPassword">Email</label>
-                </div>
-          </div>
-          <div class="form-group">
-                <div class="form-label-group">
-                  <input type="text" name="NM_LENGKAP" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                  <label for="confirmPassword">Full Name</label>
-                </div>
-          </div>
-          <input type="submit" value="Register" class="btn btn-primary btn-block" name="simpan">
-          <a href="media.php?halaman=user" class="btn btn-warning btn-block">Batal</a>
-        </form>
+      
+      <?php
+        $username = $_SESSION['USERNAME'];
+        $data = mysqli_query($koneksi,"select * from profil where NISN='$username'");
+        while($d = mysqli_fetch_array($data)){
         
+		  ?>
+  <form action="proses_data_profil.php" method="post">
+			<table>
+				<tr>			
+					<td>
+						<input type="hidden" name="NISN" value="<?php echo $d['NISN']; ?>" class="form-control">
+            <input type="hidden" name="ID_USER" value="<?php echo $d['ID_USER']; ?>" class="form-control">
+					</td>
+				</tr>
+				<tr>
+					<td width="300px">STATUS</td>
+					<td width="1000px">
+                    <select name="id_status" id="inputEmail" class="form-control" placeholder="Email address" required="required">
+              <option value="">--Pilih Status--</option>
+              <?php 
+              $queri = mysqli_query($koneksi, "SELECT * FROM status_alumni");
+	            $noo = 1;
+              while($querynama = mysqli_fetch_array($queri)){
+                if($d['id_status']==$querynama['id_status']){
+                $select="selected";
+                }else{
+                $select="";
+                }
+              echo "<option $select>".$noo++.'.'.$querynama['nama_status']."</option>";
+              }
+              ?>
+              </select>
+                    </td>
+				</tr>
+				<tr>
+					<td>NAMA LENGKAP</td>
+					<td>
+						<input type="text" name="NM_LENGKAP" value="<?php echo $d['NM_LENGKAP']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>JENIS KELAMIN</td>
+					<td>
+						<input type="text" name="JENKEL" value="<?php echo $d['JENKEL']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>TEMPAT LAHIR</td>
+					<td>
+						<input type="text" name="TEMPAT_LAHIR" value="<?php echo $d['TEMPAT_LAHIR']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>TANGGAL LAHIR</td>
+					<td>
+						<input type="date" name="TGL_LAHIR" value="<?php echo $d['TGL_LAHIR']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>ALAMAT</td>
+					<td>
+						<input type="text" name="ALAMAT" value="<?php echo $d['ALAMAT']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>TELEPON</td>
+					<td>
+						<input type="text" name="NO_TELP" value="<?php echo $d['NO_TELP']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>NAMA AYAH</td>
+					<td>
+						<input type="text" name="NM_AYAH" value="<?php echo $d['NM_AYAH']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>PEKERJAAN AYAH</td>
+					<td>
+						<input type="text" name="PEKERJAAN_AYAH" value="<?php echo $d['PEKERJAAN_AYAH']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>NAMA IBU</td>
+					<td>
+						<input type="text" name="NM_IBU" value="<?php echo $d['NM_IBU']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>PEKERJAAN IBU</td>
+					<td>
+						<input type="text" name="PEKERJAAN_IBU" value="<?php echo $d['PEKERJAAN_IBU']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>TAHUN MASUK</td>
+					<td>
+						<input type="text" name="THN_MASUK" value="<?php echo $d['THN_MASUK']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>TAHUN LULUS</td>
+					<td>
+						<input type="text" name="THN_LULUS" value="<?php echo $d['THN_LULUS']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>NOMOR IJAZAH</td>
+					<td>
+						<input type="text" name="NO_IJAZAH" value="<?php echo $d['NO_IJAZAH']; ?>" class="form-control">
+                    </td>
+				</tr>
+                <tr>
+					<td>NOMOR SKHUN</td>
+					<td>
+						<input type="text" name="NO_SKHUN" value="<?php echo $d['NO_SKHUN']; ?>" class="form-control">
+                    </td>
+				</tr>
+				<tr>
+          <td></td>
+					<td><input type="submit" value="SIMPAN" name="ubah" class="btn btn-primary btn-block">
+          <a href="media.php?halaman=home" class="btn btn-warning btn-block">Batal</a></td>
+				</tr>
+			</table>
+		</form>
+            <?php } ?>		
+
       </div>
     </div>
   </div>
