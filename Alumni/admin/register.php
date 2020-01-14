@@ -42,18 +42,13 @@ include "../config/koneksi.php";
       <div class="card-header">Register An Account</div>
       <div class="card-body">
       
-      <?php
-        $username = $_SESSION['USERNAME'];
-        $data = mysqli_query($koneksi,"select * from profil where NISN='$username'");
-        while($d = mysqli_fetch_array($data)){
-        
-		  ?>
+     
   <form action="proses_data_profil.php" method="post">
 			<table>
 				<tr>			
 					<td>
-						<input type="hidden" name="NISN" value="<?php echo $d['NISN']; ?>" class="form-control">
-            <input type="hidden" name="ID_USER" value="<?php echo $d['ID_USER']; ?>" class="form-control">
+						<input type="hidden" name="NISN" class="form-control">
+            <input type="hidden" name="ID_USER" class="form-control">
 					</td>
 				</tr>
 				<tr>
@@ -64,110 +59,106 @@ include "../config/koneksi.php";
               <?php 
               $queri = mysqli_query($koneksi, "SELECT * FROM status_alumni");
 	            $noo = 1;
-              while($querynama = mysqli_fetch_array($queri)){
-                if($d['id_status']==$querynama['id_status']){
-                $select="selected";
-                }else{
-                $select="";
-                }
-              echo "<option $select>".$noo++.'.'.$querynama['nama_status']."</option>";
-              }
-              ?>
+              while($d = mysqli_fetch_array($queri)){?>
+                <option value="<?php echo $d['id_status'];?>"> <?php echo $d['nama_status'];?> </option>
+              
+             <?php } ?>
+              
               </select>
                     </td>
 				</tr>
 				<tr>
 					<td>NAMA LENGKAP</td>
 					<td>
-						<input type="text" name="NM_LENGKAP" value="<?php echo $d['NM_LENGKAP']; ?>" class="form-control">
+						<input type="text" name="NM_LENGKAP" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>JENIS KELAMIN</td>
 					<td>
-						<input type="text" name="JENKEL" value="<?php echo $d['JENKEL']; ?>" class="form-control">
+						<input type="text" name="JENKEL" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>TEMPAT LAHIR</td>
 					<td>
-						<input type="text" name="TEMPAT_LAHIR" value="<?php echo $d['TEMPAT_LAHIR']; ?>" class="form-control">
+						<input type="text" name="TEMPAT_LAHIR" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>TANGGAL LAHIR</td>
 					<td>
-						<input type="date" name="TGL_LAHIR" value="<?php echo $d['TGL_LAHIR']; ?>" class="form-control">
+						<input type="date" name="TGL_LAHIR" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>ALAMAT</td>
 					<td>
-						<input type="text" name="ALAMAT" value="<?php echo $d['ALAMAT']; ?>" class="form-control">
+						<input type="text" name="ALAMAT" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>TELEPON</td>
 					<td>
-						<input type="text" name="NO_TELP" value="<?php echo $d['NO_TELP']; ?>" class="form-control">
+						<input type="text" name="NO_TELP" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>NAMA AYAH</td>
 					<td>
-						<input type="text" name="NM_AYAH" value="<?php echo $d['NM_AYAH']; ?>" class="form-control">
+						<input type="text" name="NM_AYAH" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>PEKERJAAN AYAH</td>
 					<td>
-						<input type="text" name="PEKERJAAN_AYAH" value="<?php echo $d['PEKERJAAN_AYAH']; ?>" class="form-control">
+						<input type="text" name="PEKERJAAN_AYAH" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>NAMA IBU</td>
 					<td>
-						<input type="text" name="NM_IBU" value="<?php echo $d['NM_IBU']; ?>" class="form-control">
+						<input type="text" name="NM_IBU" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>PEKERJAAN IBU</td>
 					<td>
-						<input type="text" name="PEKERJAAN_IBU" value="<?php echo $d['PEKERJAAN_IBU']; ?>" class="form-control">
+						<input type="text" name="PEKERJAAN_IBU" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>TAHUN MASUK</td>
 					<td>
-						<input type="text" name="THN_MASUK" value="<?php echo $d['THN_MASUK']; ?>" class="form-control">
+						<input type="text" name="THN_MASUK" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>TAHUN LULUS</td>
 					<td>
-						<input type="text" name="THN_LULUS" value="<?php echo $d['THN_LULUS']; ?>" class="form-control">
+						<input type="text" name="THN_LULUS" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>NOMOR IJAZAH</td>
 					<td>
-						<input type="text" name="NO_IJAZAH" value="<?php echo $d['NO_IJAZAH']; ?>" class="form-control">
+						<input type="text" name="NO_IJAZAH" class="form-control">
                     </td>
 				</tr>
                 <tr>
 					<td>NOMOR SKHUN</td>
 					<td>
-						<input type="text" name="NO_SKHUN" value="<?php echo $d['NO_SKHUN']; ?>" class="form-control">
+						<input type="text" name="NO_SKHUN" class="form-control">
                     </td>
 				</tr>
 				<tr>
           <td></td>
-					<td><input type="submit" value="SIMPAN" name="ubah" class="btn btn-primary btn-block">
+					<td><input type="submit" value="SIMPAN" name="simpan" class="btn btn-primary btn-block">
           <a href="media.php?halaman=home" class="btn btn-warning btn-block">Batal</a></td>
 				</tr>
 			</table>
 		</form>
-            <?php } ?>		
+           		
 
       </div>
     </div>
