@@ -53,15 +53,7 @@ include "../config/koneksi.php";
               </select></td>
         </tr>
         <tr>
-                <td>Pilih User</td>
-                <td><select name="ID_USER" class="form-control">
-              <option value="">--Pilih User--</option>
-              <?php
-              $data = mysqli_query($koneksi,"select * from user WHERE ID_GRUP=1 ");
-              while($d = mysqli_fetch_array($data)){ ?>
-              <option value="<?php echo $d['ID_USER'];?>"> <?php echo $d['USERNAME'];?> </option>
-              <?php } ?>
-              </select></td>
+                <td><input type="hidden" name="<?php $_SESSION['ID_USER'] ?>"></td>
         </tr>
         <tr>
                 <td>JUDUL</td>

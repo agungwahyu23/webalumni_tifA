@@ -8,7 +8,7 @@ if(isset($_POST['simpan'])){
     // menangkap data yang di kirim dari form
 
 $ID_KATEGORIBERITA = $_POST['ID_KATEGORIBERITA'];
-$ID_USER = $_POST['ID_USER'];
+$ID_USER = $_SESSION['ID_USER'];
 $JUDUL = $_POST['JUDUL'];
 $ISI = $_POST['ISI'];
 $TANGGAL_UPLOAD = $_POST['TANGGAL_UPLOAD'];
