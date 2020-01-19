@@ -133,19 +133,19 @@ if(isset($_GET['cari'])){
 	<?php 
 	if(isset($_GET['cari'])){
 		$cari = $_GET['cari'];
-		$data = mysqli_query($koneksi, "select * from profil where NM_LENGKAP like '%".$cari."%'");				
+        $data = mysqli_query($koneksi, "SELECT * FROM profil WHERE NM_LENGKAP like '%".$cari."%' OR JENKEL LIKE '%".$cari."%' OR THN_MASUK LIKE '%".$cari."%'
+        OR THN_LULUS LIKE '%".$cari."%'");				
     
 	$no = 1;
 	while($d = mysqli_fetch_array($data)){
-	?>
-	<tr>
-		<td><?php echo $no++; ?></td>
-		<td><?php echo $d['NM_LENGKAP']; ?></td>
-        <td><?php echo $d['JENKEL']; ?></td>
-        <td><?php echo $d['THN_MASUK']; ?></td>
-        <td><?php echo $d['THN_LULUS']; ?></td>
-	</tr>
-	<?php }} ?>
+	echo '<tr>';
+		echo '<td>'.$no++.'</td>';
+		echo '<td>'.$d['NM_LENGKAP'].'</td>';
+        echo '<td>'.$d['JENKEL'].'</td>';
+        echo '<td>'.$d['THN_MASUK'].'</td>';
+        echo '<td>'.$d['THN_LULUS'].'</td>';
+	echo '</tr>';
+    }}?>
 </table>
 
 
