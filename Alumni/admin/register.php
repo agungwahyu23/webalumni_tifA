@@ -43,7 +43,7 @@ include "../config/koneksi.php";
       <div class="card-body">
       
       <?php
-        $username = $_SESSION['USERNAME'];
+        $username = $_SESSION['NISN'];
         $data = mysqli_query($koneksi,"select * from profil where NISN='$username'");
         while($d = mysqli_fetch_array($data)){
         
