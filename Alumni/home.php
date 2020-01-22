@@ -65,9 +65,10 @@
            <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Home</a></li>
+                        <li><a href="alumni.php">Alumni</a></li>
                         <li><a href="#">Profil</a></li>
-                        <li><a href="about.php">Tentang</a></li>
-                        <li><a href="contact.php">Kontak</a></li>
+                        <li><a href="#">Tentang</a></li>
+                        <li><a href="#">Kontak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right sm">
                          <li>
@@ -106,51 +107,52 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                         <div class="blog_medium">
-                        
-                        <h3>Form Pencarian Data Alumni</h3>
- 
-<form action="alumni.php" method="get">
-	<label>Cari :</label>
-	<input type="text" name="cari">
-	<input type="submit" value="Cari">
-</form>
- 
-<?php 
-if(isset($_GET['cari'])){
-	$cari = $_GET['cari'];
-	echo "<b>Hasil pencarian : ".$cari."</b>";
-}
-?>
- 
-<table border="1">
-	<tr>
-		<th>No</th>
-		<th>Nama</th>
-        <th>Jenis Kelamin</th>
-        <th>Tahun Masuk</th>
-        <th>Tahun Lulus</th>
-	</tr>
-	<?php 
-	if(isset($_GET['cari'])){
-		$cari = $_GET['cari'];
-        $data = mysqli_query($koneksi, "SELECT * FROM profil WHERE NM_LENGKAP like '%".$cari."%' OR JENKEL LIKE '%".$cari."%' OR THN_MASUK LIKE '%".$cari."%'
-        OR THN_LULUS LIKE '%".$cari."%'");				
-    
-	$no = 1;
-	while($d = mysqli_fetch_array($data)){
-	echo '<tr>';
-		echo '<td>'.$no++.'</td>';
-		echo '<td>'.$d['NM_LENGKAP'].'</td>';
-        echo '<td>'.$d['JENKEL'].'</td>';
-        echo '<td>'.$d['THN_MASUK'].'</td>';
-        echo '<td>'.$d['THN_LULUS'].'</td>';
-	echo '</tr>';
-    }}?>
-</table>
-
-
+                        <?php
+                        //$query=mysqli_query($koneksi,"SELECT berita.ID_BERITA,berita.ID_KATEGORIBERITA,berita.JUDUL,berita.ISI,berita.TANGGAL_UPLOAD,berita.GAMBAR,
+                        //user.NM_LENGKAP
+                        //FROM berita JOIN user ON user.ID_USER=berita.ID_USER");
+                        $data=mysqli_query($koneksi, "SELECT * FROM berita ORDER BY ID_BERITA DESC limit 3");
+                        while ($dt=mysqli_fetch_array($data)) {
+                        ?>
+                            <article class="post">
+                                
+                                <figure class="post_img">
+                                    <a href="#">
+                                        <img src="img/<?php echo $dt['GAMBAR'];?>" width="200" height="200" alt="blog post">
+                                    </a>
+                                </figure>
+                                <div class="post_content">
+                                    <div class="post_meta">
+                                        <h2>
+                                            <?php echo $dt['JUDUL']; ?>
+                                        </h2>
+                                      
+                                        <div class="metaInfo">
+                                            <span><i class="fa fa-calendar"></i> <?php echo $dt['TANGGAL_UPLOAD']; ?> </span>
+                                        </div>
+                                    </div>
+                                    <p><?php 
+                                    $ISI = htmlentities(strip_tags($dt['ISI']));
+                                    $isiber = substr($ISI,0,420);
+                                    $isiber = substr($ISI,0,strrpos($isiber," "));
+                                    echo $isiber."....."; ?></p>
+                                    <a class="btn btn-small btn-default" href="#">Read More</a>
+                                    
+                                </div>
+                            </article>
+                        <?php } ?>
                         </div>
-                        
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <ul class="pagination pull-left mrgt-0">
+                                <li><a href="#">&laquo;</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">&raquo;</a></li>
+                            </ul>
+                        </div>
                         
                     </div>
 

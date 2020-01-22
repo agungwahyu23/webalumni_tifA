@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<?php include "config/koneksi.php"; ?>
+
 <html class="no-js" lang="en">
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
@@ -64,11 +64,10 @@
             </div>
            <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
-                        <li><a href="index.php">Home</a></li>
-                        <li><a href="alumni.php">Alumni</a></li>
+                        <li><a href="home.php">Home</a></li>
                         <li><a href="#">Profil</a></li>
-                        <li><a href="#">Tentang</a></li>
-                        <li><a href="#">Kontak</a></li>
+                        <li><a href="about.php">Tentang</a></li>
+                        <li><a href="contact.php">Kontak</a></li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right sm">
                          <li>
@@ -107,54 +106,126 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                         <div class="blog_medium">
-                        <?php
-                        //$query=mysqli_query($koneksi,"SELECT berita.ID_BERITA,berita.ID_KATEGORIBERITA,berita.JUDUL,berita.ISI,berita.TANGGAL_UPLOAD,berita.GAMBAR,
-                        //user.NM_LENGKAP
-                        //FROM berita JOIN user ON user.ID_USER=berita.ID_USER");
-                        $data=mysqli_query($koneksi, "SELECT * FROM berita ORDER BY ID_BERITA DESC limit 3");
-                        while ($dt=mysqli_fetch_array($data)) {
-                        ?>
-                            <article class="post">
-                                
-                                <figure class="post_img">
-                                    <a href="#">
-                                        <img src="img/<?php echo $dt['GAMBAR'];?>" width="200" height="200" alt="blog post">
-                                    </a>
-                                </figure>
-                                <div class="post_content">
-                                    <div class="post_meta">
-                                        <h2>
-                                            <?php echo $dt['JUDUL']; ?>
-                                        </h2>
-                                      
-                                        <div class="metaInfo">
-                                            <span><i class="fa fa-calendar"></i> <?php echo $dt['TANGGAL_UPLOAD']; ?> </span>
-                                        </div>
-                                    </div>
-                                    <p><?php 
-                                    $ISI = htmlentities(strip_tags($dt['ISI']));
-                                    $isiber = substr($ISI,0,420);
-                                    $isiber = substr($ISI,0,strrpos($isiber," "));
-                                    echo $isiber."....."; ?></p>
-                                    <a class="btn btn-small btn-default" href="#">Read More</a>
-                                    
-                                </div>
-                            </article>
-                        <?php } ?>
-                        </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <ul class="pagination pull-left mrgt-0">
-                                <li><a href="#">&laquo;</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
                         
+                        <!--form pencarian-->
+
+                        <!-- Membuat Menu Header / Navbar -->
+        <nav class="navbar navbar-inverse" role="navigation">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<a class="navbar-brand" href="#" style="color: white;"><b>Data Alumni</b></a>
+				</div>
+			</div>
+		</nav>
+		<div style="padding: 0 15px;">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr>
+						<th class="text-center">NO</th>
+						<th>NIS</th>
+						<th>NAMA</th>
+						<th>JENIS KELAMIN</th>
+						<th>TAHUN LULUS</th>
+						<th>STATUS PEKERJAAN</th>
+					</tr>
+					<?php
+					// Include / load file koneksi.php
+					include "config/koneksi.php";
+					
+					// Cek apakah terdapat data page pada URL
+					$page = (isset($_GET['page']))? $_GET['page'] : 1;
+					
+					$limit = 10; // Jumlah data per halamannya
+					
+					// Untuk menentukan dari data ke berapa yang akan ditampilkan pada tabel yang ada di database
+					$limit_start = ($page - 1) * $limit;
+					
+					// Buat query untuk menampilkan data siswa sesuai limit yang ditentukan
+					$sql = mysqli_query($koneksi, "SELECT profil.*, status_alumni.nama_status FROM profil JOIN status_alumni ON status_alumni.id_status=profil.id_status LIMIT ".$limit_start.",".$limit);
+					
+					$no = $limit_start + 1; // Untuk penomoran tabel
+					while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi $sql
+					?>
+						<tr>
+							<td class="align-middle text-center"><?php echo $no; ?></td>
+							<td class="align-middle"><?php echo $data['NISN']; ?></td>
+							<td class="align-middle"><?php echo $data['NM_LENGKAP']; ?></td>
+                            <td class="align-middle"><?php echo $data['JENKEL']; ?></td>
+							<td class="align-middle"><?php echo $data['THN_LULUS']; ?></td>
+							<td class="align-middle"><?php echo $data['nama_status']; ?></td>
+						</tr>
+					<?php
+						$no++; // Tambah 1 setiap kali looping
+					}
+					?>
+				</table>
+			</div>
+			
+			<!--
+			-- Buat Paginationnya
+			-- Dengan bootstrap, kita jadi dimudahkan untuk membuat tombol-tombol pagination dengan design yang bagus tentunya
+			-->
+			<ul class="pagination">
+				<!-- LINK FIRST AND PREV -->
+				<?php
+				if($page == 1){ // Jika page adalah page ke 1, maka disable link PREV
+				?>
+					<li class="disabled"><a href="#">First</a></li>
+					<li class="disabled"><a href="#">&laquo;</a></li>
+				<?php
+				}else{ // Jika page bukan page ke 1
+					$link_prev = ($page > 1)? $page - 1 : 1;
+				?>
+					<li><a href="index.php?page=1">First</a></li>
+					<li><a href="index.php?page=<?php echo $link_prev; ?>">&laquo;</a></li>
+				<?php
+				}
+				?>
+				
+				<!-- LINK NUMBER -->
+				<?php
+				// Buat query untuk menghitung semua jumlah data
+				$sql2 = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM profil");
+				$get_jumlah = mysqli_fetch_array($sql2);
+				
+				$jumlah_page = ceil($get_jumlah['jumlah'] / $limit); // Hitung jumlah halamannya
+				$jumlah_number = 3; // Tentukan jumlah link number sebelum dan sesudah page yang aktif
+				$start_number = ($page > $jumlah_number)? $page - $jumlah_number : 1; // Untuk awal link number
+				$end_number = ($page < ($jumlah_page - $jumlah_number))? $page + $jumlah_number : $jumlah_page; // Untuk akhir link number
+				
+				for($i = $start_number; $i <= $end_number; $i++){
+					$link_active = ($page == $i)? ' class="active"' : '';
+				?>
+					<li<?php echo $link_active; ?>><a href="index.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+				<?php
+				}
+				?>
+				
+				<!-- LINK NEXT AND LAST -->
+				<?php
+				// Jika page sama dengan jumlah page, maka disable link NEXT nya
+				// Artinya page tersebut adalah page terakhir 
+				if($page == $jumlah_page){ // Jika page terakhir
+				?>
+					<li class="disabled"><a href="#">&raquo;</a></li>
+					<li class="disabled"><a href="#">Last</a></li>
+				<?php
+				}else{ // Jika Bukan page terakhir
+					$link_next = ($page < $jumlah_page)? $page + 1 : $jumlah_page;
+				?>
+					<li><a href="index.php?page=<?php echo $link_next; ?>">&raquo;</a></li>
+					<li><a href="index.php?page=<?php echo $jumlah_page; ?>">Last</a></li>
+				<?php
+				}
+				?>
+			</ul>
+		</div>
+
+                        <!--end form pencarian-->
+                        
+                        </div>
                     </div>
+
 
                     <!--Sidebar Widget-->
                     <div class="col-xs-12 col-md-4 col-lg-4 col-sm-4">
