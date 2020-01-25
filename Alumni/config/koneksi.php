@@ -1,6 +1,6 @@
 <?php
 
-$koneksi = mysqli_connect("localhost","root","","alumni_test");
+$koneksi = mysqli_connect("localhost","root","","alumni_test_new");
 
 // check koneksi
 if (mysqli_connect_errno()){

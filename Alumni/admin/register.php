@@ -35,28 +35,30 @@ include "../config/koneksi.php";
       <div class="container-fluid">
 
         <!-- Breadcrumbs-->
+        <ol style="display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; padding: 0.75rem 1rem; margin-bottom: 1rem; list-style: none; background-color: #a2ffb6; border-radius: 0.25rem;">
+      <p><b>Perhatian:</b> Anda dapat melakukan input data secara manual/satu per satu dengan mengisi form yang ada 
+      <b>ATAU</b> melakukan input data dari file excel dengan ekstensi <b>.xls</b> dengan cara menekan tombol upload file</p>         
+        </ol>
+
+      <form method="post" enctype="multipart/form-data" action="upload_aksi.php">
+	      Pilih File: 
+	      <input name="filepegawai" type="file" required="required"> 
+	      <input name="upload" type="submit" value="Upload" class="btn btn-warning">
+      </form>
 
         <!-- Form Register -->
         <div class="container">
     <div class="card card-register mx-auto mt-5">
-      <div class="card-header">Register An Account</div>
+      <div class="card-header">Masukkan Data Alumni</div>
       <div class="card-body">
-      
-<<<<<<< HEAD
-      <?php
-        $username = $_SESSION['NISN'];
-        $data = mysqli_query($koneksi,"select * from profil where NISN='$username'");
-        while($d = mysqli_fetch_array($data)){
-        
-		  ?>
-=======
-     
->>>>>>> dd846ad7c97ce93ee0770bc0a7b72b237ae4e2a0
+
+
   <form action="proses_data_profil.php" method="post">
 			<table>
-				<tr>			
+				<tr>	
+          <td>NISN</td>		
 					<td>
-						<input type="hidden" name="NISN" class="form-control">
+						<input type="text" name="NISN" class="form-control">
             <input type="hidden" name="ID_USER" class="form-control">
 					</td>
 				</tr>
@@ -85,8 +87,9 @@ include "../config/koneksi.php";
                 <tr>
 					<td>JENIS KELAMIN</td>
 					<td>
-						<input type="text" name="JENKEL" class="form-control">
-                    </td>
+						<input type="radio" name="JENKEL" value="Laki-laki">Laki-laki
+            <input type="radio" name="JENKEL" value="Perempuan">Perempuan
+          </td>
 				</tr>
                 <tr>
 					<td>TEMPAT LAHIR</td>

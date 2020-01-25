@@ -54,7 +54,7 @@ if(empty($_SESSION['USERNAME'])){
     $user=mysqli_query($koneksi,"SELECT user.*, grup.* FROM user JOIN grup ON user.ID_GRUP=grup.ID_GRUP");
     while ($u=mysqli_fetch_array($user)) {
       if ($_SESSION['USERNAME']==$u['USERNAME']) {
-        $nm=$u['NM_LENGKAP'];
+        $nm=$_SESSION['NM_LENGKAP'];
         $gr=$u['NAMA'];
       }
     }

@@ -29,7 +29,8 @@ if(empty($USERNAME)){
 					$_SESSION['ID_USER'] = $row['ID_USER'];
 					$_SESSION['USERNAME'] = $row['USERNAME'];
 					$_SESSION['PASSWORD'] = $row['PASSWORD'];
-                    $_SESSION['ID_GRUP'] = $row['ID_GRUP'];
+					$_SESSION['ID_GRUP'] = $row['ID_GRUP'];
+					$_SESSION['NM_LENGKAP'] = $row['NM_LENGKAP'];
                     //buat percabangan untuk melakukan redirect halaman Pengguna / LEVEL USER KARYAWAN
 					echo"<script>alert('Anda berhasil Login ... ??'); window.location=('media.php?halaman=home');</script>";
 					}else{

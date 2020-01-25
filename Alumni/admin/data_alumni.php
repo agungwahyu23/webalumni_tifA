@@ -71,7 +71,8 @@ include "../config/koneksi.php";
                 <td><?php echo $d['NISN']; ?></td>
 				        <td><?php echo $d['NM_LENGKAP']; ?></td>
                 <td><?php echo $d['JENKEL']; ?></td>
-                <td><?php echo $d['TGL_LAHIR']; ?></td>
+                <td><?php $tanggal=$d['TGL_LAHIR'];
+                echo date("d/m/Y", strtotime($tanggal)); ?></td>
                 <td><?php echo $d['ALAMAT']; ?></td>
                 <td><?php echo $d['THN_MASUK']; ?></td>
                 <td><?php echo $d['THN_LULUS']; ?></td>
