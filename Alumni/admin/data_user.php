@@ -55,7 +55,7 @@ include "../config/koneksi.php";
                 <tbody>
                 <?php 
 		$no = 1;
-		$data = mysqli_query($koneksi,"select * from user");
+		$data = mysqli_query($koneksi,"select * from user order by ID DESC");
 		while($d = mysqli_fetch_array($data)){
 			?>
 			<tr>

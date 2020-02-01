@@ -107,53 +107,31 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8">
                         <div class="blog_medium">
-
-                        <?php
-    include"config/koneksi.php";
-    $data=mysqli_query($koneksi, "SELECT * FROM berita ORDER BY ID_BERITA DESC limit 3");
-    while ($dt=mysqli_fetch_array($data)) {
-    ?>
-        <article class="post">
-            
-            <figure class="post_img">
-                <a href="#">
-                    <img src="img/<?php echo $dt['GAMBAR'];?>" width="200" height="200" alt="blog post">
-                </a>
-            </figure>
-            <div class="post_content">
-                <div class="post_meta">
-                    <h2>
-                        <?php echo $dt['JUDUL']; ?>
-                    </h2>
-                
-                    <div class="metaInfo">
-                        <span><i class="fa fa-calendar"></i> <?php echo $dt['TANGGAL_UPLOAD']; ?> </span>
-                    </div>
-                </div>
-                <p><?php 
-                $ISI = htmlentities(strip_tags($dt['ISI']));
-                $isiber = substr($ISI,0,420);
-                $isiber = substr($ISI,0,strrpos($isiber," "));
-                echo $isiber."....."; ?></p>
-                <a class="btn btn-small btn-default" href="detail_berita.php?ID_BERITA=<?php echo $dt['ID_BERITA']; ?>">Read More</a>
-                
-            </div>
-        </article>
-<?php } ?>
-                        
+        <?php
+	      include 'config/koneksi.php';
+	      $ID_BERITA = $_GET['ID_BERITA'];
+	      $data = mysqli_query($koneksi,"select * from berita where ID_BERITA='$ID_BERITA'");
+	      while($du = mysqli_fetch_array($data)){
+		?>
+                            <article class="post">
+                                    <a href="#">
+                                        <center><img src="img/<?php echo $du['GAMBAR'];?>" width="300" height="300" alt="blog post"></center>
+                                    </a>    
+                                    <div class="post_content">
+                                    <div class="post_meta">
+                                        <h2>
+                                            <?php echo $du['JUDUL']; ?>
+                                        </h2>
+                                    
+                                        <div class="metaInfo">
+                                            <span><i class="fa fa-calendar"></i> <?php echo $du['TANGGAL_UPLOAD']; ?> </span>
+                                        </div>
+                                    </div>
+                                    <?php echo $du['ISI']; ?>
+                                </div>
+                            </article>
+          <?php } ?>
                         </div>
-                        <div class="col-lg-12 col-md-12 col-sm-12">
-                            <ul class="pagination pull-left mrgt-0">
-                                <li><a href="#">&laquo;</a></li>
-                                <li class="active"><a href="#">1</a></li>
-                                <li><a href="#">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4</a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">&raquo;</a></li>
-                            </ul>
-                        </div>
-                        
                     </div>
 
                     <!--Sidebar Widget-->

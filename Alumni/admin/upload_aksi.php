@@ -42,10 +42,10 @@ for ($i=2; $i<=$jumlah_baris; $i++){
     $NO_IJAZAH  = $data->val($i, 14);
     $NO_SKHUN  = $data->val($i, 15);
 
-$hrup='2';
+$hrup=$_POST['2'];
 	
 		// input data ke database (table data_pegawai)
-		mysqli_query($koneksi,"INSERT into profil values('$NISN','','','$NM_LENGKAP','$JENKEL','$TEMPAT_LAHIR','$TGL_LAHIR','$ALAMAT','$NO_TELP',
+		mysqli_query($koneksi,"INSERT into profil values('','$NISN','3','$NM_LENGKAP','$JENKEL','$TEMPAT_LAHIR','$TGL_LAHIR','$ALAMAT','$NO_TELP',
         '$NM_AYAH','$PEKERJAAN_AYAH','$NM_IBU','$PEKERJAAN_IBU','$THN_MASUK','$THN_LULUS','$NO_IJAZAH','$NO_SKHUN')");
 		$berhasil++;
 	

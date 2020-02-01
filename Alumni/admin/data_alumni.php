@@ -63,7 +63,7 @@ include "../config/koneksi.php";
                 <tbody>
                 <?php 
 		$no = 1;
-		$data = mysqli_query($koneksi,"select * from profil");
+		$data = mysqli_query($koneksi,"select * from profil order by ID_USER DESC");
 		while($d = mysqli_fetch_array($data)){
 			?>
 			<tr>

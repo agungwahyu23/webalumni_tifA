@@ -52,17 +52,7 @@ include "../config/koneksi.php";
               <?php } ?>
               </select></td>
         </tr>
-        <tr>
-                <td>Pilih User</td>
-                <td><select name="ID_USER" class="form-control">
-              <option value="">--Pilih User--</option>
-              <?php
-              $data = mysqli_query($koneksi,"select * from user WHERE ID_GRUP=1 ");
-              while($d = mysqli_fetch_array($data)){ ?>
-              <option value="<?php echo $d['ID_USER'];?>"> <?php echo $d['USERNAME'];?> </option>
-              <?php } ?>
-              </select></td>
-        </tr>
+        <input type="hidden" name="<?php echo $_SESSION['ID_USER']; ?>">
         <tr>
                 <td>JUDUL</td>
                 <td><input type="text" name="JUDUL" class="form-control" placeholder="Judul Berita" ></td>
@@ -70,10 +60,6 @@ include "../config/koneksi.php";
         <tr>
                 <td>ISI</td>
                 <td><textarea name="ISI" class="form-control" placeholder="Isi Berita" ></textarea></td>
-        </tr>
-        <tr>
-                <td>Tanggal Upload</td>
-                <td><input type="date" name="TANGGAL_UPLOAD" class="form-control"></td>
         </tr>
         <tr>
                 <td>Pilih Gambar</td>

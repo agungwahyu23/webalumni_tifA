@@ -65,6 +65,7 @@
            <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li><a href="index.php">Home</a></li>
+                        <li><a href="alumni.php">Alumni</a></li>
                         <li><a href="#">Profil</a></li>
                         <li><a href="about.php">Tentang</a></li>
                         <li><a href="contact.php">Kontak</a></li>
@@ -112,41 +113,136 @@
 <form action="alumni.php" method="get">
 	<label>Cari :</label>
 	<input type="text" name="cari">
-	<input type="submit" value="Cari">
+	<input type="submit" class="btn btn-default" value="Cari">
 </form>
  
 <?php 
 if(isset($_GET['cari'])){
+    if ($_GET['cari']=="kosong") {
+        echo"<script>alert('Kolom masih kosong!!!');</script>";
+    }
 	$cari = $_GET['cari'];
 	echo "<b>Hasil pencarian : ".$cari."</b>";
 }
 ?>
- 
-<table border="1">
-	<tr>
-		<th>No</th>
-		<th>Nama</th>
-        <th>Jenis Kelamin</th>
-        <th>Tahun Masuk</th>
-        <th>Tahun Lulus</th>
-	</tr>
-	<?php 
-	if(isset($_GET['cari'])){
-		$cari = $_GET['cari'];
-		$data = mysqli_query($koneksi, "select * from profil where NM_LENGKAP like '%".$cari."%'");				
+
+<?php 
+// Cek apakah terdapat data page pada URL
+$page = (isset($_GET['page']))? $_GET['page'] : 1;
+					
+$limit = 5; // Jumlah data per halamannya
+
+// Untuk menentukan dari data ke berapa yang akan ditampilkan pada tabel yang ada di database
+$limit_start = ($page - 1) * $limit;
+
     
-	$no = 1;
-	while($d = mysqli_fetch_array($data)){
-	?>
-	<tr>
-		<td><?php echo $no++; ?></td>
-		<td><?php echo $d['NM_LENGKAP']; ?></td>
-        <td><?php echo $d['JENKEL']; ?></td>
-        <td><?php echo $d['THN_MASUK']; ?></td>
-        <td><?php echo $d['THN_LULUS']; ?></td>
-	</tr>
-	<?php }} ?>
-</table>
+    if(isset($_GET['cari'])){
+		$cari = $_GET['cari'];
+        $data ="SELECT profil.* , status_alumni.nama_status FROM profil
+        INNER JOIN status_alumni ON profil.id_status=status_alumni.id_status
+        WHERE NM_LENGKAP like '%".$cari."%' limit 10";	
+    }else{
+        $data= "SELECT profil.* , status_alumni.nama_status, user.ID_USER FROM profil
+        INNER JOIN status_alumni ON profil.id_status=status_alumni.id_status INNER JOIN user ON user.ID_USER=profil.ID_USER
+        WHERE ID_GRUP=2 LIMIT ".$limit_start.",".$limit;
+    }
+?>	
+
+<div style="padding: 0 15px;">
+			<div class="table-responsive">
+				<table class="table table-bordered">
+					<tr>
+						<th class="text-center">NO</th>
+						<th>NISN</th>
+						<th>NAMA LENGKAP</th>
+						<th>JENIS KELAMIN</th>
+						<th>TAHUN LULUS</th>
+						<th>STATUS PEKERJAAN</th>
+					</tr>
+					<?php
+					
+					
+					
+					// Buat query untuk menampilkan data siswa sesuai limit yang ditentukan
+					$sql = mysqli_query($koneksi, $data);
+					
+					$no = $limit_start + 1; // Untuk penomoran tabel
+					while($data = mysqli_fetch_array($sql)){ // Ambil semua data dari hasil eksekusi $sql
+					?>
+						<tr>
+							<td class="align-middle text-center"><?php echo $no; ?></td>
+							<td class="align-middle"><?php echo $data['NISN']; ?></td>
+							<td class="align-middle"><?php echo $data['NM_LENGKAP']; ?></td>
+							<td class="align-middle"><?php echo $data['JENKEL']; ?></td>
+							<td class="align-middle"><?php echo $data['THN_LULUS']; ?></td>
+							<td class="align-middle"><?php echo $data['nama_status']; ?></td>
+						</tr>
+					<?php
+						$no++; // Tambah 1 setiap kali looping
+					}
+					?>
+				</table>
+			</div>
+			
+			<!--
+			-- Buat Paginationnya
+			-- Dengan bootstrap, kita jadi dimudahkan untuk membuat tombol-tombol pagination dengan design yang bagus tentunya
+			-->
+			<ul class="pagination">
+				<!-- LINK FIRST AND PREV -->
+				<?php
+				if($page == 1){ // Jika page adalah page ke 1, maka disable link PREV
+				?>
+					<li class="disabled"><a href="#">First</a></li>
+					<li class="disabled"><a href="#">&laquo;</a></li>
+				<?php
+				}else{ // Jika page bukan page ke 1
+					$link_prev = ($page > 1)? $page - 1 : 1;
+				?>
+					<li><a href="alumni.php?page=1">First</a></li>
+					<li><a href="alumni.php?page=<?php echo $link_prev; ?>">&laquo;</a></li>
+				<?php
+				}
+				?>
+				
+				<!-- LINK NUMBER -->
+				<?php
+				// Buat query untuk menghitung semua jumlah data
+				$sql2 = mysqli_query($koneksi, "SELECT COUNT(*) AS jumlah FROM profil");
+				$get_jumlah = mysqli_fetch_array($sql2);
+				
+				$jumlah_page = ceil($get_jumlah['jumlah'] / $limit); // Hitung jumlah halamannya
+				$jumlah_number = 3; // Tentukan jumlah link number sebelum dan sesudah page yang aktif
+				$start_number = ($page > $jumlah_number)? $page - $jumlah_number : 1; // Untuk awal link number
+				$end_number = ($page < ($jumlah_page - $jumlah_number))? $page + $jumlah_number : $jumlah_page; // Untuk akhir link number
+				
+				for($i = $start_number; $i <= $end_number; $i++){
+					$link_active = ($page == $i)? ' class="active"' : '';
+				?>
+					<li<?php echo $link_active; ?>><a href="alumni.php?page=<?php echo $i; ?>"><?php echo $i; ?></a></li>
+				<?php
+				}
+				?>
+				
+				<!-- LINK NEXT AND LAST -->
+				<?php
+				// Jika page sama dengan jumlah page, maka disable link NEXT nya
+				// Artinya page tersebut adalah page terakhir 
+				if($page == $jumlah_page){ // Jika page terakhir
+				?>
+					<li class="disabled"><a href="#">&raquo;</a></li>
+					<li class="disabled"><a href="#">Last</a></li>
+				<?php
+				}else{ // Jika Bukan page terakhir
+					$link_next = ($page < $jumlah_page)? $page + 1 : $jumlah_page;
+				?>
+					<li><a href="alumni.php?page=<?php echo $link_next; ?>">&raquo;</a></li>
+					<li><a href="alumni.php?page=<?php echo $jumlah_page; ?>">Last</a></li>
+				<?php
+				}
+				?>
+			</ul>
+		</div>
 
 
                         </div>

@@ -1,8 +1,8 @@
 <?php
 include"../config/koneksi.php";
 //Buat variable Username dan password untuk menangkap inputan Form 
-$USERNAME = $_POST['USERNAME'];
-$PASSWORD = $_POST['PASSWORD'];
+$USERNAME = mysqli_real_escape_string($koneksi,$_POST['USERNAME']);
+$PASSWORD = mysqli_real_escape_string($koneksi,$_POST['PASSWORD']);
 //pertama kita buat validasi login
 //jika Username dari inputan Empty atau kosong maka
 if(empty($USERNAME)){
