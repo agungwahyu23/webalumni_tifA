@@ -64,8 +64,8 @@ include "../config/koneksi.php";
                 <?php          
 
 		$no = 1;
-		$data = mysqli_query($koneksi,"SELECT profil.*, status_alumni.* FROM profil INNER JOIN status_alumni ON status_alumni.id_status*profil.id_status");
-		while($d = mysqli_fetch_array($data)){
+		$data = mysqli_query($koneksi,"select * from profil order by ID_USER DESC*");
+		while($d = mysqli_fetch_array($data)) {
 			?>
 			<tr>
 				        <td><?php echo $no++; ?></td>
@@ -79,8 +79,7 @@ include "../config/koneksi.php";
                 <td><?php echo $d['THN_LULUS']; ?></td>
                 <td><?php echo $d['NO_IJAZAH']; ?></td>
 				<td>
-					<a class="far fa-eye" style="font-size:24px;color:blue" href="media.php?halaman=detail_alumni&NISN=<?php echo $d['NISN'];?>"></a>
-          <a class="far fa-pencil-square-o" style="font-size:24px;color:green" href="media.php?halaman=edit_alumni&NISN=<?php echo $d['NISN'];?>"></a>
+					<a class="far fa-pencil-square-o" style="font-size:24px;color:green" href="media.php?halaman=detail_alumni&NISN=<?php echo $d['NISN'];?>"></a>
 					<a class="fa fa-trash" style="font-size:24px;color:red" href="proses_profil.php?NISN=<?php echo $d['NISN']; ?>"></a>
 				</td>
 			</tr>
