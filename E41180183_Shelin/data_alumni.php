@@ -73,12 +73,13 @@ include "../config/koneksi.php";
 				        <td><?php echo $d['NM_LENGKAP']; ?></td>
                 <td><?php echo $d['JENKEL']; ?></td>
                 <td><?php echo $d['TGL_LAHIR']; ?></td>
+                echo date (d/m/Y", strtotime($tanggal)); ?></td>
                 <td><?php echo $d['ALAMAT']; ?></td>
                 <td><?php echo $d['THN_MASUK']; ?></td>
                 <td><?php echo $d['THN_LULUS']; ?></td>
                 <td><?php echo $d['NO_IJAZAH']; ?></td>
 				<td>
-					<a class="far fa-eye" style="font-size:24px;color:blue" href="media.php?halaman=detail_alumni&NISN=<?php echo $d['NISN'];?>"></a>
+					<a class="far fa-pencil-square-o" style="font-size:24px;color:green" href="media.php?halaman=detail_alumni&NISN=<?php echo $d['NISN'];?>"></a>
 					<a class="fa fa-trash" style="font-size:24px;color:red" href="proses_profil.php?NISN=<?php echo $d['NISN']; ?>"></a>
 				</td>
 			</tr>
