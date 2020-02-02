@@ -127,7 +127,9 @@
                                             <span><i class="fa fa-calendar"></i> <?php echo $du['TANGGAL_UPLOAD']; ?> </span>
                                         </div>
                                     </div>
+                                    <span align="justify">
                                     <?php echo $du['ISI']; ?>
+                                    </span>
                                 </div>
                             </article>
           <?php } ?>

@@ -164,8 +164,6 @@ if(empty($_SESSION['USERNAME'])){
       </li>
     <?php } ?>
     </ul>  
-
-
     
 
     <div id="content-wrapper">
@@ -175,9 +173,136 @@ if(empty($_SESSION['USERNAME'])){
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
+            <a href="media.php?halaman=home">Dashboard</a>
           </li>
-          <li class="breadcrumb-item active">Overview</li>
+          <li class="breadcrumb-item active">
+          <?php
+          if($_GET['halaman']=='home'){
+            echo 'Home';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='data_alumni'){
+            echo 'Data Alumni';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='edit_alumni'){
+            echo 'Data Alumni / Edit Alumni';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='detail_alumni'){
+            echo 'Data Alumni / Detail Alumni';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='user'){
+            echo 'Data User';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='user_add'){
+            echo 'Data User / Tambah User';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='user_edit'){
+            echo 'Data User / Edit User';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='berita'){
+            echo 'Data Berita';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='berita_add'){
+            echo 'Data Berita / Tambah Berita';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='berita_edit'){
+            echo 'Data Berita / Edit Berita';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='grup'){
+            echo 'Data Grup';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='grup_add'){
+            echo 'Data Grup / Tambah Grup';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='grup_edit'){
+            echo 'Data Grup / Edit Grup';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='kategori_berita'){
+            echo 'Data Kategori Berita';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='kategori_berita_add'){
+            echo 'Data Kategori Berita / Tambah Kategori Berita';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='kategori_berita_edit'){
+            echo 'Data Kategori Berita / Edit Kategori Berita';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='ketegori_diskusi'){
+            echo 'Data Kategori Diskusi';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+          elseif($_GET['halaman']=='kategori_diskusi_add'){
+            echo 'Data Kategori Diskusi / Tambah Kategori Diskusi';
+            //includkan file home.php jika terdapat URL ?halaman=home
+            }
+            elseif($_GET['halaman']=='kategori_diskusi_edit'){
+              echo 'Data Kategori Diskusi / Edit Kategori Diskusi';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='status_alumni'){
+              echo 'Data Status Alumni';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='status_alumni_add'){
+              echo 'Data Status Alumni / Tambah Status Alumni';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='status_alumni_edit'){
+              echo 'Data Status Alumni / Edit Status Alumni';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='fordis'){
+              echo 'Data Fordis';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='fordis_add'){
+              echo 'Data Fordis / Tambah Fordis';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='fordis_view'){
+              echo 'Data Fordis / Fordis View';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='fordis_edit'){
+              echo 'Data Fordis / Edit Fordis';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='data_profil'){
+              echo 'Data Profil';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='profil_edit'){
+              echo 'Data Profil / Edit Profil';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='report'){
+              echo 'Report';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='loker'){
+              echo 'Data Loker';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }
+            elseif($_GET['halaman']=='loker_view'){
+              echo 'Data Profil / Loker View';
+              //includkan file home.php jika terdapat URL ?halaman=home
+              }		
+          ?>
+          </li>
         </ol>
 
         <!-- Icon Cards-->

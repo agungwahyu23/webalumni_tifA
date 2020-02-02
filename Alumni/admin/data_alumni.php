@@ -52,18 +52,18 @@ include "../config/koneksi.php";
                     <th>NISN</th>
                     <th>NAMA</th>
                     <th>JK</th>
-                    <th>TANGGAL LAHIR</th>
+                    <th>TGL LAHIR</th>
                     <th>ALAMAT</th>
-                    <th>TAHUN MASUK</th>
-                    <th>TAHUN LULUS</th>
-                    <th>NO IJAZAH</th>
-                    <th>AKSI</th>
+                    <th>THN MASUK</th>
+                    <th>THN LULUS</th>
+                    <th>PEKERJAAN</th>
+                    <th>ACTION</th>
                   </tr>
                 </thead>
                 <tbody>
                 <?php 
 		$no = 1;
-		$data = mysqli_query($koneksi,"SELECT profil.*, status_alumni.* FROM profil INNER JOIN status_alumni ON status_alumni.id_status*profil.id_status");
+		$data = mysqli_query($koneksi,"SELECT profil.*, status_alumni.* FROM profil INNER JOIN status_alumni ON status_alumni.id_status=profil.id_status");
 		while($d = mysqli_fetch_array($data)){
 			?>
 			<tr>
@@ -76,9 +76,9 @@ include "../config/koneksi.php";
                 <td><?php echo $d['ALAMAT']; ?></td>
                 <td><?php echo $d['THN_MASUK']; ?></td>
                 <td><?php echo $d['THN_LULUS']; ?></td>
-                <td><?php echo $d['NO_IJAZAH']; ?></td>
+                <td><?php echo $d['nama_status']; ?></td>
 				<td>
-					<a class="fa fa-eye" style="font-size:24px;color:green" href="media.php?halaman=detail_alumni&NISN=<?php echo $d['NISN'];?>"></a>
+					<a class="fa fa-eye" style="font-size:24px;color:blue" href="media.php?halaman=detail_alumni&NISN=<?php echo $d['NISN'];?>"></a>
           <a class="fa fa-pencil-square-o" style="font-size:24px;color:green" href="media.php?halaman=edit_alumni&NISN=<?php echo $d['NISN'];?>"></a>
 					<a class="fa fa-trash" style="font-size:24px;color:red" href="proses_profil.php?NISN=<?php echo $d['NISN']; ?>"></a>
 				</td>

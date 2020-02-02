@@ -54,6 +54,10 @@ elseif($_GET['halaman']=='edit_alumni'){
 	include"edit_alumni.php";
 	//includkan file home.php jika terdapat URL ?halaman=home
 	}
+elseif($_GET['halaman']=='detail_alumni'){
+	include"detail_alumni.php";
+	//includkan file home.php jika terdapat URL ?halaman=home
+	}
 elseif($_GET['halaman']=='user'){
 	include"data_user.php";
 	//includkan file home.php jika terdapat URL ?halaman=home
