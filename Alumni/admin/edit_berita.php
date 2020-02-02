@@ -87,7 +87,7 @@ include "../config/koneksi.php";
         </tr>
         <tr>
                 <td>ISI</td>
-                <td><textarea name="ISI" class="form-control" placeholder="Isi Berita"><?php echo htmlspecialchars($du['ISI']); ?></textarea></td>
+                <td><textarea style="width:100%; height:200px" name="ISI" class="form-control" placeholder="Isi Berita"><?php echo htmlspecialchars($du['ISI']); ?></textarea></td>
         </tr>
         <tr>
                 <td>Pilih Gambar</td>
